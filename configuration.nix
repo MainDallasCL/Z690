@@ -5,13 +5,17 @@
     # NixOS specific things
     ./modules/nixpkgs.nix
 
-    # Hardware Definitions
+    # Partitions
     ./hardware-configuration.nix
     ./modules/partitions.nix
 
+    # Hardware
     ./modules/nvidia.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-pc-ssd
+
+    # Peripherals
+    ./modules/BENQ.nix
 
     # Bootloader through Kernel
     ./modules/systemd-boot.nix
