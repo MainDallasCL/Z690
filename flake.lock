@@ -119,33 +119,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1781063120,
-        "narHash": "sha256-1UIF/mDJluwJQjmmcZ2j1L2+mjYsefe82QCLj0TYSOg=",
+        "lastModified": 1781319724,
+        "narHash": "sha256-ZGuxexEMo4Xv28KJ0dX/m/PHN4oZIOnxHZpNTyrvx4M=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "baa46aeb6d02e0ba13de67cd35e3d57aedfacf01",
+        "rev": "8355f0a16b2dbb06a97959a918af5b239bbe05ae",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "ref": "release-26.05",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "libnbtplusplus": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1772016279,
-        "narHash": "sha256-7itkptyjoRcXfGLwg1/jxajetZ3a4mDc66+w4X6yW8s=",
-        "owner": "PrismLauncher",
-        "repo": "libnbtplusplus",
-        "rev": "687e43031df0dc641984b4256bcca50d5b3f7de3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "PrismLauncher",
-        "repo": "libnbtplusplus",
         "type": "github"
       }
     },
@@ -247,11 +231,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1780902259,
-        "narHash": "sha256-q8yYEC5f1mFlQO9RGna4LTc9QrcvWunX6FYp83munkQ=",
+        "lastModified": 1781216227,
+        "narHash": "sha256-9mUW6gNwoN2SWc/l0fW4svPNOulXLl8ijqKyeSOGgJE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "bd0ff2d3eac24699c3664d5966b9ef36f388e2ca",
+        "rev": "a0374025a863d007d98e3297f6aa46cc3141c2f0",
         "type": "github"
       },
       "original": {
@@ -261,35 +245,13 @@
         "type": "github"
       }
     },
-    "prism-cracked": {
-      "inputs": {
-        "libnbtplusplus": "libnbtplusplus",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1776795718,
-        "narHash": "sha256-YrqHeE9ZEnmxJiXE+IBAxbmNRFPE7mn9KbxZ3Mpu388=",
-        "owner": "Diegiwg",
-        "repo": "PrismLauncher-Cracked",
-        "rev": "0c20d448a3c89cbff85ef5dc7420bf60dc1e65ff",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Diegiwg",
-        "repo": "PrismLauncher-Cracked",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nixos-hardware": "nixos-hardware",
         "nixpak": "nixpak",
-        "nixpkgs": "nixpkgs_2",
-        "prism-cracked": "prism-cracked"
+        "nixpkgs": "nixpkgs_2"
       }
     }
   },
