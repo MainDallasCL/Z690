@@ -44,7 +44,6 @@
     ./modules/virt-manager.nix
 
     # Sandboxed applications
-
   ];
   system.stateVersion = "26.05";
 }

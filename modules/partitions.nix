@@ -27,8 +27,9 @@
       ];
     };
 
-    fileSystems."/mnt/nvRAID" =
-    { device = "/dev/disk/by-label/nvRAID";
+    fileSystems."/mnt/nvRAID" = {
+      device = "/dev/disk/by-label/nvRAID";
+      neededForBoot = true;
       fsType = "f2fs";
       options = [
         "compress_algorithm=zstd:6"
@@ -37,6 +38,21 @@
         "lazytime"
       ];
     };
+
+    fileSystems."/nix" = {
+      depends = [
+        "/"
+        "/mnt/nvRAID"
+      ];
+      device = "/mnt/nvRAID/nix";
+      neededForBoot = true;
+      fsType = "none";
+      options = [
+        "bind"
+#        "ro"
+      ];
+    };
+
 
     fileSystems."/mnt/RAID" =
     { device = "/dev/disk/by-label/SSDRAID";
