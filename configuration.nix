@@ -16,12 +16,14 @@
 
     # Peripherals
     ./modules/BENQ.nix
+    ./modules/M2070.nix
 
-    # Bootloader through Kernel
+    # Bootloader and Kernel
     ./modules/systemd-boot.nix
     ./modules/kernel.nix
 
     # Operating System
+    ./modules/kexec.nix
     ./modules/swap.nix
     ./modules/locale.nix
     ./modules/keyboard.nix
@@ -29,14 +31,17 @@
     ./modules/networking.nix
     ./modules/locale.nix
     ./modules/ssh.nix
+    ./modules/sunshine.nix
 
     # User space
     ./modules/users.nix
     #./modules/gnome.nix
     ./modules/plasma.nix
     ./modules/applications.nix
+    ./modules/nixflix.nix
 
     # Virtual Machines
+    ./modules/virt-manager.nix
 
     # Sandboxed applications
 

@@ -23,6 +23,12 @@
       url = "github:nixpak/nixpak";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # NixFlix for pirated movies
+    nixflix = {
+      url = "github:kiriwalawren/nixflix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -32,6 +38,7 @@
     nix-cachyos-kernel,
     nixos-hardware,
     nixpak,
+    nixflix,
     ...
   } @ inputs: let
   in {
@@ -46,6 +53,7 @@
           }
           nixos-hardware.nixosModules.common-pc
           ./configuration.nix
+          nixflix.nixosModules.default
         ];
       };
     };
