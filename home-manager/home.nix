@@ -43,6 +43,15 @@
     homeDirectory = "/home/dallas";
   };
 
+  home.activation = {
+    createDirs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      mkdir -p \
+        ${config.home.homeDirectory}/.minecraft \
+        ${config.home.homeDirectory}/.sklauncher \
+        ${config.home.homeDirectory}/.openjfx \
+    '';
+  };
+
   # Add stuff for your user as you see fit:
   home.packages = with pkgs; [ gnomeExtensions.gjs-osk mplayer discord qbittorrent];
   programs = {

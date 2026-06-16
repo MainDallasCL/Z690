@@ -41,10 +41,12 @@
     nixflix,
     ...
   } @ inputs: let
+    userArgs = import ./specialArgs.nix;
+    system = "x86_64-linux";
   in {
     nixosConfigurations = {
       Z690 = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = { inherit inputs; } // userArgs;
         modules = [
           {
             nixpkgs.overlays = [
