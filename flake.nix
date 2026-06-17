@@ -53,21 +53,17 @@
               nix-cachyos-kernel.overlays.pinned
             ];
           }
-          nixos-hardware.nixosModules.common-pc
+          nixos-hardware.nixosModules.asus-zephyrus-gu603h
           ./configuration.nix
           nixflix.nixosModules.default
         ];
       };
     };
 
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
       "dallas@Z690" = home-manager.lib.homeManagerConfiguration {
-        # Home-manager requires 'pkgs' instance
         pkgs = nixpkgs.legacyPackages.x86_64-linux; 
         extraSpecialArgs = {inherit inputs;};
-        # > Our main home-manager configuration file <
         modules = [./home-manager/home.nix];
       };
     };
