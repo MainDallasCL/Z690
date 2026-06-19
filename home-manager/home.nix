@@ -15,6 +15,7 @@
     # You can also split up your configuration and import pieces of it here:
      ./gnome-tweaks.nix
      ./psd.nix
+     ./mangohud.nix
   ];
 
   nixpkgs = {
@@ -36,6 +37,8 @@
       allowUnfree = true;
     };
   };
+
+  homeFeatures.mangoHud.enable = true;
 
   programs.fish.enable = true;
 

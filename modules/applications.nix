@@ -3,7 +3,6 @@
 }:{
   programs = {
     fish.enable = true;
-#    firefox.enable = true;
     steam.enable = true;
   };
 

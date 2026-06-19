@@ -54,8 +54,8 @@
             ];
           }
           nixos-hardware.nixosModules.asus-zephyrus-gu603h
-          ./configuration.nix
           nixflix.nixosModules.default
+          ./hosts/Z690.nix
         ];
       };
     };
