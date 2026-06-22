@@ -53,9 +53,22 @@
               nix-cachyos-kernel.overlays.pinned
             ];
           }
+          { networking.hostName = "Z690"; }
           nixos-hardware.nixosModules.asus-zephyrus-gu603h
           nixflix.nixosModules.default
           ./hosts/Z690.nix
+        ];
+      };
+      CY13 = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; } // userArgs;
+        modules = [
+          {
+            nixpkgs.overlays = [
+              nix-cachyos-kernel.overlays.pinned
+            ];
+          }
+          { networking.hostName = "CY13"; }
+          ./hosts/CY13.nix
         ];
       };
     };
@@ -63,6 +76,12 @@
     homeConfigurations = {
       "dallas@Z690" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; 
+        extraSpecialArgs = {inherit inputs;};
+        modules = [./home-manager/home.nix];
+      };
+
+      "dallas@CY13" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs;};
         modules = [./home-manager/home.nix];
       };

@@ -1,7 +1,7 @@
 {
   inputs, lib, config, pkgs, ...
 }:{
-  networking.hostName = "Z690";
+  #networking.hostName = Z690;
   networking.networkmanager.enable = true;
 
   # Disable NetworkManager's internal DNS resolution
