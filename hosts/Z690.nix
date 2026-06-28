@@ -35,6 +35,10 @@
     ../modules/plasma.nix
     ../modules/applications.nix
     ../modules/nixflix.nix
+    ../modules/flatpak.nix
+
+    # Home Manager Stuff
+    ../modules/home-manager-handle.nix
 
     # Virtual Machines
     ../modules/virt-manager.nix

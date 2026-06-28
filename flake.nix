@@ -29,6 +29,9 @@
       url = "github:kiriwalawren/nixflix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Flatpaks for pirated minecraft xD
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
   outputs = {
@@ -39,6 +42,7 @@
     nixos-hardware,
     nixpak,
     nixflix,
+    nix-flatpak,
     ...
   } @ inputs: let
     userArgs = import ./specialArgs.nix;
@@ -56,6 +60,7 @@
           { networking.hostName = "Z690"; }
           nixos-hardware.nixosModules.asus-zephyrus-gu603h
           nixflix.nixosModules.default
+          nix-flatpak.nixosModules.nix-flatpak
           ./hosts/Z690.nix
         ];
       };
@@ -70,20 +75,6 @@
           { networking.hostName = "CY13"; }
           ./hosts/CY13.nix
         ];
-      };
-    };
-
-    homeConfigurations = {
-      "dallas@Z690" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; 
-        extraSpecialArgs = {inherit inputs;};
-        modules = [./home-manager/home.nix];
-      };
-
-      "dallas@CY13" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs;};
-        modules = [./home-manager/home.nix];
       };
     };
   };
