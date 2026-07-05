@@ -17,4 +17,6 @@
     #authKeyFile = "/run/secrets/tailscale_key";
 
   };
+
+  services.gnunet.enable = true;
 }

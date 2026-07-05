@@ -9,7 +9,7 @@
     ../modules/CY13-partitions.nix
 
     # Hardware
-    # Everything literally works xD
+    ../modules/battery-managment.nix
 
     # Peripherals
     # Or a lack thereof
