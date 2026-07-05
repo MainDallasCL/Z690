@@ -22,7 +22,7 @@
     ../modules/kexec.nix
     ../modules/swap.nix
     ../modules/locale.nix
-    ../modules/keyboard.nix
+    ../modules/chromebook-keyboard.nix
     ../modules/sound.nix
     ../modules/networking.nix
     ../modules/locale.nix
