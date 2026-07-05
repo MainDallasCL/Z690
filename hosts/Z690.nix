@@ -35,6 +35,7 @@
     ../modules/plasma.nix
     ../modules/applications.nix
     ../modules/nixflix.nix
+    ../modules/flatpak.nix
 
     # Virtual Machines
     ../modules/virt-manager.nix
