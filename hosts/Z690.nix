@@ -6,7 +6,7 @@
     ../modules/nixpkgs.nix
 
     # Partitions
-    ../modules/Z690/partitions.nix
+    ../modules/Z690-partitions.nix
 
     # Hardware
     ../modules/nvidia.nix
