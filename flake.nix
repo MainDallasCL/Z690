@@ -63,6 +63,12 @@
           nixflix.nixosModules.default
           nix-flatpak.nixosModules.nix-flatpak
           ./hosts/Z690.nix
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; } // userArgs;
+            home-manager.users.dallas = import ./home-manager/home.nix;
+          }
         ];
       };
       CY13 = nixpkgs.lib.nixosSystem {
@@ -79,21 +85,13 @@
           nixos-hardware.nixosModules.common-pc-laptop
           nixos-hardware.nixosModules.common-pc-laptop-ssd
           ./hosts/CY13.nix
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; } // userArgs;
+            home-manager.users.dallas = import ./home-manager/home.nix;
+          }
         ];
-      };
-    };
-
-    homeConfigurations = {
-      "dallas@Z690" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; 
-        extraSpecialArgs = {inherit inputs;};
-        modules = [./home-manager/home.nix];
-      };
-
-      "dallas@CY13" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs;};
-        modules = [./home-manager/home.nix];
       };
     };
   };

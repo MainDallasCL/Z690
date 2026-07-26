@@ -7,5 +7,4 @@
     capSysAdmin = true;
     openFirewall = true;
   };
-
 }
