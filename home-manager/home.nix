@@ -36,7 +36,7 @@
   };
 
   # Add stuff for your user as you see fit:
-  home.packages = with pkgs; [ gnomeExtensions.gjs-osk mplayer discord qbittorrent];
+  home.packages = with pkgs; [ gnomeExtensions.gjs-osk mplayer discord qbittorrent vlc];
   programs = {
     neovim.enable = true;
     pyradio.enable = true;

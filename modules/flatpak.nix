@@ -2,6 +2,7 @@
   inputs, lib, config, pkgs, ...
 }: {
   services.flatpak.enable = true;
+  services.flatpak.update.onActivation = true;
 
   services.flatpak.remotes = lib.mkOptionDefault [
     {
@@ -18,6 +19,7 @@
     { appId = "org.unmojang.FjordLauncher"; origin = "hero-persson";  }
     { appId = "org.kde.Platform/x86_64/6.10"; origin = "flathub";  }
     { appId = "com.github.tchx84.Flatseal"; origin = "flathub";  }
+    { appId = "org.vinegarhq.Sober"; origin = "flathub";  }
   ];
 
   services.flatpak.overrides = {
