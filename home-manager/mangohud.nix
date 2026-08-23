@@ -8,6 +8,7 @@ in
     enable = lib.mkEnableOption "MangoHud performance overlay";
   };
 
+  homeFeatures.mangoHud.enable = true;
   config = lib.mkIf cfg.enable {
     programs.mangohud = {
       enable = true;

@@ -18,5 +18,10 @@
 
   };
 
-  services.gnunet.enable = true;
+  services.gnunet.enable = false;
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
 }

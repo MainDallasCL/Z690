@@ -33,6 +33,12 @@
     # Flatpaks for pirated minecraft xD
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
+    # Vintage Story
+    # TODO Wrap that bitch up in some bubblewrap, put it behind a firejail and pour a sandbox on it
+    vintagestory-nix = {
+      url = "git+https://codeberg.org/PierreBorine/vintagestory-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -67,7 +73,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; } // userArgs;
-            home-manager.users.dallas = import ./home-manager/home.nix;
+            home-manager.users.dallas = import ./home-manager/hosts/Z690.nix;
           }
         ];
       };
@@ -89,7 +95,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; } // userArgs;
-            home-manager.users.dallas = import ./home-manager/home.nix;
+            home-manager.users.dallas = import ./home-manager/hosts/CY13.nix;
           }
         ];
       };

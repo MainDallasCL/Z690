@@ -13,12 +13,7 @@
     # inputs.nix-colors.homeManagerModule
 
     # You can also split up your configuration and import pieces of it here:
-     ./gnome-tweaks.nix
-     ./psd.nix
-     ./mangohud.nix
   ];
-  homeFeatures.mangoHud.enable = true;
-
   programs.fish.enable = true;
 
   home = {
@@ -36,10 +31,18 @@
   };
 
   # Add stuff for your user as you see fit:
-  home.packages = with pkgs; [ gnomeExtensions.gjs-osk mplayer discord qbittorrent vlc];
+  home.packages = with pkgs; [
+    #gnomeExtensions.gjs-osk
+    mplayer
+    discord
+    qbittorrent
+    vlc
+    vintagestoryPackages.v1-21-6
+  ];
   programs = {
     neovim.enable = true;
     pyradio.enable = true;
+    firefox.enable = true;
   };
 
   # Enable home-manager and git
