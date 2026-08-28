@@ -38,7 +38,7 @@
     discord
     qbittorrent
     vlc
-    #vintagestoryPackages.v1-22-7
+    vintagestoryPackages.v1-22-7
   ];
   programs = {
     neovim.enable = true;
