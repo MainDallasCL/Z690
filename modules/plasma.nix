@@ -7,6 +7,7 @@
 
   # Default display manager for Plasma
     displayManager.plasma-login-manager.enable = true;
+    displayManager.defaultSession = "plasma";
 
   # Optionally enable xserver, but I won't ;^)
   # xserver.enable = true;
