@@ -30,7 +30,8 @@
 
     # User space
     ../modules/users.nix
-    ../modules/plasma.nix
+    #../modules/plasma.nix
+    ../modules/niri.nix
     ../modules/applications.nix
   ];
   system.stateVersion = "26.05";
