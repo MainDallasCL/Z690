@@ -18,32 +18,34 @@
     # enableExtensionUpdateCheck = false;
 
     # Basic settings example
-    userSettings = {
-      "editor.formatOnSave" = true;
-      "editor.tabSize" = 2;
-      "files.autoSave" = "afterDelay";
-      "workbench.colorTheme" = "Default Dark Modern";
-      # "nix.enableLanguageServer" = true;  # if you use nixd / nil
+    profiles.default = {
+      userSettings = {
+        "editor.formatOnSave" = true;
+        "editor.tabSize" = 2;
+        "files.autoSave" = "afterDelay";
+        "workbench.colorTheme" = "Default Dark Modern";
+        # "nix.enableLanguageServer" = true;  # if you use nixd / nil
+      };
+
+      # Keybindings example
+      keybindings = [
+        # {
+        #   key = "ctrl+shift+t";
+        #   command = "workbench.action.terminal.toggleTerminal";
+        # }
+      ];
+
+      # Extensions (from nixpkgs)
+      extensions = with pkgs.vscode-extensions; [
+        # Popular ones
+        jnoortheen.nix-ide
+        # mkhl.direnv
+        # ms-python.python
+        # rust-lang.rust-analyzer
+        github.copilot
+        # vscodevim.vim
+        # catppuccin.catppuccin-vsc
+      ];
     };
-
-    # Keybindings example
-    keybindings = [
-      # {
-      #   key = "ctrl+shift+t";
-      #   command = "workbench.action.terminal.toggleTerminal";
-      # }
-    ];
-
-    # Extensions (from nixpkgs)
-    extensions = with pkgs.vscode-extensions; [
-      # Popular ones
-      jnoortheen.nix-ide
-      # mkhl.direnv
-      # ms-python.python
-      # rust-lang.rust-analyzer
-      github.copilot
-      # vscodevim.vim
-      # catppuccin.catppuccin-vsc
-    ];
   };
 }
