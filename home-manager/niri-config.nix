@@ -6,6 +6,7 @@
     alacritty.enable = true;
   };
   programs.niri = {
+    # We don't enable niri here explicitly, as it was already enabled it prior
     #enable = true;
     settings = {
       prefer-no-csd = true;
@@ -17,19 +18,15 @@
         # trackpoint = { ... };
         focus-follows-mouse = {
           enable = true;
-          # Optional – highly recommended on a scrolling compositor
-          # so it doesn’t jump the view when the cursor crosses a partially-offscreen window
           max-scroll-amount = "0%";
         };
       };
       layout = {
         gaps = 8;
-        # ... same as above
       };
       binds = {
         "Mod+T".action.spawn = "alacritty";
         "Mod+D".action.spawn = "fuzzel";
-        # etc.
       };
     };
   };
