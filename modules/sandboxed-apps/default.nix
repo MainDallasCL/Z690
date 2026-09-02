@@ -7,10 +7,12 @@ let
   call = file: import file { inherit pkgs utils sandboxedXdgUtils inputs username; };
 
   #minecraft = call ./minecraft.nix;
+  vintageStory = call ./vintageStory.nix;
 in
 {
 
   users.users.${username}.packages = [
     #minecraft
+    vintageStory
   ];
 }
