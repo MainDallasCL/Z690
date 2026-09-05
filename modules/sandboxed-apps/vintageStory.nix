@@ -10,7 +10,7 @@ let
     paths = [
       (
         pkgs.writeShellScriptBin "vintagestory" ''
-          exec ${vintagestory-pkg}/bin/vintagestory "$@"
+          exec ${vintagestory-pkg}/bin/vintagestory
         ''
       )
       (pkgs.makeDesktopItem {
@@ -23,18 +23,11 @@ let
       })
     ];
     postBuild = ''
-      mkdir -p $out/share/pixmaps
-      # Use the icon from the original package if available
-      if [ -f "${vintagestory-pkg}/share/pixmaps/vintagestory.xpm" ]; then
-        ln -s ${vintagestory-pkg}/share/pixmaps/vintagestory.xpm \
-          $out/share/pixmaps/vintagestory.xpm
-      else
-        # Fallback to a generic game icon
-        ln -s ${pkgs.fetchurl {
-          url = "https://cdn2.steamgriddb.com/icon_thumb/66ad4d795e99fb554db14f094b47de9c.png";
-          hash = "sha256-IbRIJ14CDL4gfQEgGSF72BmN01taFrKPFGSE9lYCl3Y=";
-        }} $out/share/pixmaps/vintagestory.xpm
-      fi
+    mkdir -p $out/share/icons/hicolor/256x256/apps
+      ln -s ${pkgs.fetchurl {
+        url = "https://cdn2.steamgriddb.com/icon_thumb/66ad4d795e99fb554db14f094b47de9c.png";
+        hash = "sha256-IbRIJ14CDL4gfQEgGSF72BmN01taFrKPFGSE9lYCl3Y=";
+      }} $out/share/icons/hicolor/256x256/apps/vintagestory.png
     '';
   };
 
@@ -62,9 +55,8 @@ utils.mkSandboxed {
     bubblewrap = {
       # Bind necessary directories read-write
       bind.rw = [
-        (sloth.concat' sloth.homeDir "/.config/VintagestoryData")  # Game settings
-        (sloth.concat' sloth.homeDir "/.config/Mono")  # Mono runtime config
-        (sloth.concat' sloth.homeDir "/.local/share/Mono")  # Mono cache
+        (sloth.concat' sloth.homeDir "/.config/VintagestoryData")  # Game data
+        (sloth.concat' sloth.homeDir "/Pictures/Vintagestory/") # I don't know fuck off
       ];
 
       bind.ro = [

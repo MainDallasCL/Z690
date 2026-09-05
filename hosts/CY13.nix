@@ -1,38 +1,39 @@
-{
-  inputs, lib, config, pkgs, ...
-}: {
-  imports = [
+{ inputs, lib, config, pkgs, ...
+}:
+let
+  mod = name: ../modules + "/${name}";
+in {
+  imports = map mod [
     # NixOS specific things
-    ../modules/nixpkgs.nix
+    "nixpkgs.nix"
 
     # Partitions
-    ../modules/CY13-partitions.nix
+    "CY13-partitions.nix"
 
     # Hardware
-    ../modules/battery-managment.nix
+    "battery-managment.nix"
 
     # Peripherals
     # Or a lack thereof
-
     # Bootloader and Kernel
-    ../modules/systemd-boot.nix
-    ../modules/kernel.nix
+    "systemd-boot.nix"
+    "kernel.nix"
 
     # Operating System
-    ../modules/kexec.nix
-    ../modules/swap.nix
-    ../modules/locale.nix
-    ../modules/chromebook-keyboard.nix
-    ../modules/sound.nix
-    ../modules/networking.nix
-    ../modules/locale.nix
-    ../modules/ssh.nix
+    "kexec.nix"
+    "swap.nix"
+    "locale.nix"
+    "chromebook-keyboard.nix"
+    "sound.nix"
+    "networking.nix"
+    "ssh.nix"
 
     # User space
-    ../modules/users.nix
-    #../modules/plasma.nix
-    ../modules/niri.nix
-    ../modules/applications.nix
+    "users.nix"
+
+    #"plasma.nix"
+    "niri.nix"
+    "applications.nix"
   ];
   system.stateVersion = "26.05";
 }

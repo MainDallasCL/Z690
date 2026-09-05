@@ -1,47 +1,48 @@
-{
-  inputs, lib, config, pkgs, ...
-}: {
-  imports = [
+{ inputs, lib, config, pkgs, ... }:
+let
+  mod = name: ../modules + "/${name}";
+in {
+  imports = map mod [
     # NixOS specific things
-    ../modules/nixpkgs.nix
+    "nixpkgs.nix"
 
     # Partitions
-    ../modules/Z690-partitions.nix
+    "Z690-partitions.nix"
 
     # Hardware
-    ../modules/nvidia.nix
+    "nvidia.nix"
 
     # Peripherals
-    ../modules/BENQ.nix
-    ../modules/M2070.nix
+    "BENQ.nix"
+    "M2070.nix"
 
     # Bootloader and Kernel
-    ../modules/systemd-boot.nix
-    ../modules/kernel.nix
+    "systemd-boot.nix"
+    "kernel.nix"
 
     # Operating System
-    ../modules/kexec.nix
-    ../modules/swap.nix
-    ../modules/locale.nix
-    ../modules/keyboard.nix
-    ../modules/sound.nix
-    ../modules/networking.nix
-    ../modules/locale.nix
-    ../modules/ssh.nix
-    ../modules/sunshine.nix
+    "kexec.nix"
+    "swap.nix"
+    "locale.nix"
+    "keyboard.nix"
+    "sound.nix"
+    "networking.nix"
+    "ssh.nix"
+    "sunshine.nix"
 
     # User space
-    ../modules/users.nix
-    ../modules/plasma.nix
-    ../modules/applications.nix
-    ../modules/nixflix.nix
-    ../modules/flatpak.nix
+    "users.nix"
+    "plasma.nix"
+    "applications.nix"
+    "nixflix.nix"
+    "flatpak.nix"
+    "freenet.nix"
 
     # Virtual Machines
-    ../modules/virt-manager.nix
+    "virt-manager.nix"
 
     # Sandboxed applications
-    ../modules/sandboxed-apps
+    "sandboxed-apps"
   ];
   system.stateVersion = "26.05";
 }
