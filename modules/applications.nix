@@ -12,5 +12,6 @@
     vanilla-dmz
     wol
     jre17_minimal
+    nil
   ];
 }

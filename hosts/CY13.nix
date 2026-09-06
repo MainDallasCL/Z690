@@ -15,6 +15,7 @@ in {
 
     # Peripherals
     # Or a lack thereof
+
     # Bootloader and Kernel
     "systemd-boot.nix"
     "kernel.nix"
@@ -31,8 +32,8 @@ in {
     # User space
     "users.nix"
 
-    #"plasma.nix"
-    "niri.nix"
+    "plasma.nix"
+    #"niri.nix"
     "applications.nix"
   ];
   system.stateVersion = "26.05";

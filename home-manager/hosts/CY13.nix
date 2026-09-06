@@ -9,7 +9,7 @@
 }: {
   # You can import other home-manager modules here
   imports = [
-    ../niri-config.nix
+#    ../niri-config.nix
   ];
 
   programs.fish.enable = true;

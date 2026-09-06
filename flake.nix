@@ -34,7 +34,6 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
     # Vintage Story
-    # TODO Wrap that bitch up in some bubblewrap, put it behind a firejail and pour a sandbox on it
     vintagestory-nix = {
       url = "git+https://codeberg.org/PierreBorine/vintagestory-nix";
       inputs.nixpkgs.follows = "nixpkgs";

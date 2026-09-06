@@ -1,0 +1,14 @@
+window-rule {
+    opacity 0.8
+    background-effect {
+        blur true
+        xray false
+    }
+    popups {
+        opacity 1.0
+        background-effect {
+            blur false
+            xray false
+        }
+    }
+}
