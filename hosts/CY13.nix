@@ -1,5 +1,3 @@
-{ inputs, lib, config, pkgs, ...
-}:
 let
   mod = name: ../modules + "/${name}";
 in {

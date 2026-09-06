@@ -1,6 +1,5 @@
-
 {
-  inputs, lib, config, pkgs, ...
+  lib, ...
 }:{
   services.power-profiles-daemon.enable = lib.mkForce false;
 
