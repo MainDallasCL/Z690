@@ -1,4 +1,4 @@
-{ inputs, pkgs, utils, sandboxedXdgUtils, ... }:
+{ pkgs, utils, sandboxedXdgUtils, ... }:
 
 let
   # Import the Vintage Story package from the flake
