@@ -6,7 +6,7 @@ in {
     "nixpkgs.nix"
 
     # Partitions
-    "CY13-partitions.nix"
+    "partitions/CY13-partitions.nix"
 
     # Hardware
     "battery-managment.nix"

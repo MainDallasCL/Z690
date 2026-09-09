@@ -6,7 +6,7 @@ in {
     "nixpkgs.nix"
 
     # Partitions
-    "Z690-partitions.nix"
+    "partitions/Z690-partitions.nix"
 
     # Hardware
     "nvidia.nix"
