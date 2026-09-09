@@ -39,6 +39,7 @@ in {
 
     # Virtual Machines
     "virt-manager.nix"
+    "looking-glass.nix"
 
     # Sandboxed applications
     "sandboxed-apps"
