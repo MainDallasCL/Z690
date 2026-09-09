@@ -6,7 +6,6 @@
     alacritty.enable = true;
   };
   programs.niri = {
-    # We don't enable niri here explicitly, as it was already enabled it prior
     #enable = true;
     settings = {
       prefer-no-csd = true;

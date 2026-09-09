@@ -6,34 +6,40 @@ in {
     "nixpkgs.nix"
 
     # Partitions
-    "partitions/CY13-partitions.nix"
+    "partitions/Z690-partitions.nix"
 
     # Hardware
-    "battery-managment.nix"
+    "nvidia.nix"
 
     # Peripherals
-    # Or a lack thereof
+    # Empty for now
 
     # Bootloader and Kernel
-    "systemd-boot.nix"
-    "kernel.nix"
+    # TODO Self explanatory
 
     # Operating System
     "kexec.nix"
     "swap.nix"
     "locale.nix"
-    "chromebook-keyboard.nix"
+    "keyboard.nix"
     "sound.nix"
     "networking.nix"
     "ssh.nix"
+    "sunshine.nix"
 
     # User space
     "users.nix"
     "plasma.nix"
-    #"niri.nix"
     "applications.nix"
+    "nixflix.nix"
+    "flatpak.nix"
+    "freenet.nix"
 
+    # Virtual Machines
     "virt-manager.nix"
+
+    # Sandboxed applications
+    "sandboxed-apps"
   ];
   system.stateVersion = "26.05";
 }

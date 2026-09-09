@@ -1,7 +1,6 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
-  inputs,
   lib,
   config,
   pkgs,
@@ -35,7 +34,6 @@
     discord
     qbittorrent
     vlc
-    vintagestoryPackages.v1-22-7
   ];
   programs = {
     neovim.enable = true;
