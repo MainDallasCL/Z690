@@ -29,10 +29,11 @@ in {
 
     # User space
     "users.nix"
-
     "plasma.nix"
     #"niri.nix"
     "applications.nix"
+
+    "virt-manager.nix"
   ];
   system.stateVersion = "26.05";
 }
