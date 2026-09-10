@@ -1,3 +1,6 @@
+{
+  pkgs, ...
+}:
 let
   mod = name: ../modules + "/${name}";
 in {
@@ -6,13 +9,9 @@ in {
     "nixpkgs.nix"
 
     # Partitions
-    "partitions/Z690-partitions.nix"
+    "partitions/QPlus-partitions.nix"
 
     # Hardware
-    "nvidia.nix"
-
-    # Peripherals
-    # Empty for now
 
     # Bootloader and Kernel
     # TODO Self explanatory
@@ -21,25 +20,30 @@ in {
     "kexec.nix"
     "swap.nix"
     "locale.nix"
-    "keyboard.nix"
-    "sound.nix"
     "networking.nix"
     "ssh.nix"
-    "sunshine.nix"
 
     # User space
     "users.nix"
-    "plasma.nix"
-    "applications.nix"
-    "nixflix.nix"
-    "flatpak.nix"
-    "freenet.nix"
-
-    # Virtual Machines
-    "virt-manager.nix"
-
-    # Sandboxed applications
-    "sandboxed-apps"
   ];
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = true;
+    };
+  };
+
+  programs = {
+    fish.enable = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+  ];
+
   system.stateVersion = "26.05";
 }
+

@@ -57,10 +57,10 @@
     ...
   } @ inputs: let
     userArgs = import ./specialArgs.nix;
-    system = "x86_64-linux";
   in {
     nixosConfigurations = {
       Z690 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         specialArgs = { inherit inputs; } // userArgs;
         modules = [
           {
@@ -82,6 +82,7 @@
         ];
       };
       CY13 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         specialArgs = { inherit inputs; } // userArgs;
         modules = [
           {
@@ -101,6 +102,20 @@
             home-manager.extraSpecialArgs = { inherit inputs; } // userArgs;
             home-manager.users.dallas = import ./home-manager/hosts/CY13.nix;
           }
+        ];
+      };
+      QPlus = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = { inherit inputs; } // userArgs;
+        modules = [
+          { networking.hostName = "QPlus"; }
+          ./hosts/QPlus.nix
+#          home-manager.nixosModules.home-manager {
+#            home-manager.useGlobalPkgs = true;
+#            home-manager.useUserPackages = true;
+#            home-manager.extraSpecialArgs = { inherit inputs; } // userArgs;
+#            home-manager.users.dallas = import ./home-manager/hosts/CY13.nix;
+#          }
         ];
       };
     };
