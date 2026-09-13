@@ -12,19 +12,18 @@ in {
     "partitions/QPlus-partitions.nix"
 
     # Hardware
-
-    # Bootloader and Kernel
-    # TODO Self explanatory
+    "tanixPatches"
 
     # Operating System
     "kexec.nix"
     "swap.nix"
     "locale.nix"
     "networking.nix"
-    "ssh.nix"
+    #"ssh.nix" Slightly different for now
 
     # User space
     "users.nix"
+    "xfce4.nix"
   ];
 
   services.openssh = {
@@ -43,6 +42,8 @@ in {
     vim
     wget
   ];
+
+  programs.git.enable = true;
 
   system.stateVersion = "26.05";
 }
