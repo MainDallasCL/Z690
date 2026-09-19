@@ -32,6 +32,7 @@ in {
     "plasma.nix"
     #"niri.nix"
     "applications.nix"
+    "steam.nix"
 
     "virt-manager.nix"
   ];
