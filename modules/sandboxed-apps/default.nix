@@ -13,6 +13,6 @@ in
 
   users.users.${username}.packages = [
     #minecraft
-    #vintageStory
+    vintageStory
   ];
 }
