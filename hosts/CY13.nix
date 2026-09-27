@@ -33,8 +33,9 @@ in {
     #"niri.nix"
     "applications.nix"
     "steam.nix"
-
-    "virt-manager.nix"
   ];
+
+  boot.kernelModules = [ "snd_pci_acp3x" "snd_soc_acp_rt5682_mach" ];
+
   system.stateVersion = "26.05";
 }

@@ -1,7 +1,4 @@
 { 
-  config, 
-  pkgs, 
-  callPackage, 
   ... 
 }: {
   nixpkgs.config.pulseaudio = true;
