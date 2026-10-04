@@ -19,6 +19,7 @@ in {
     "swap.nix"
     "locale.nix"
     "networking.nix"
+    "pihole.nix"
     #"ssh.nix" Slightly different for now
 
     # User space
