@@ -1,12 +1,17 @@
 { pkgs, utils, sandboxedXdgUtils, ... }:
 
 let
-  # pkgs.steam is already a buildFHSEnv wrapper that ships its own
-  # desktop entry and icons, so unlike the Vintage Story module there's no
-  # need for a symlinkJoin / makeDesktopItem wrapper. Override here if you
-  # want extra runtime libs, e.g.:
-  #   pkgs.steam.override { extraPkgs = p: [ p.gamemode ]; }
   steam-pkg = pkgs.steam;
+
+  # The host's nvidia-offload isn't visible inside the sandbox, so ship an equivalent.
+  # Use as a Steam launch option: nvidia-offload %command%
+  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec "$@"
+  '';
 in
 utils.mkSandboxed {
   package = steam-pkg;
@@ -14,11 +19,11 @@ utils.mkSandboxed {
   displayName = "Steam";
   wmClass = "steam";
 
-  extraPackages = [ sandboxedXdgUtils ];
+  extraPackages = [ sandboxedXdgUtils nvidia-offload ];
 
   presets = [
     "wayland"
-    "x11"       # Steam's client UI and most Proton games go through XWayland
+    "x11"
     "gpu"
     "audio"
     "network"
@@ -28,16 +33,19 @@ utils.mkSandboxed {
   extraPerms = { sloth, ... }:
     let
       home = sloth.homeDir;
-      # sloth.mkdir creates the directory first, so bwrap doesn't choke
-      # on a first launch where nothing exists yet.
       homeDir = rel: sloth.mkdir (sloth.concat' home rel);
     in
     {
-      # Nixpak-level env (not the FHS env's own)
       bubblewrap.env = {
         XDG_SESSION_TYPE = "wayland";
-        # Needs the ntsync kernel module (6.14+, `boot.kernelModules = [ "ntsync" ]`)
         # PROTON_USE_NTSYNC = "1";
+
+        # Alternative to the per-game launch option: offload ALL of Steam
+        # (UI included) to the dGPU. Uses more power, but needs no launch options.
+        # __NV_PRIME_RENDER_OFFLOAD = "1";
+        # __NV_PRIME_RENDER_OFFLOAD_PROVIDER = "NVIDIA-G0";
+        # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+        # __VK_LAYER_NV_optimus = "NVIDIA_only";
       };
 
       bubblewrap = {
@@ -54,15 +62,15 @@ utils.mkSandboxed {
           (homeDir "/.local/share/desktop-directories")
           (homeDir "/.local/share/icons")
 
-          # Extra library folders: add whatever you use, e.g.
-          # "/games/steam"
+          # Extra library folders
+          "/mnt/EXTRA/SHARED/Steam"
+          "/mnt/RAID/SHARED/Steam"
+          "/mnt/nvRAID/SHARED/Steam/"
         ];
 
         bind.ro = [
           "/etc/passwd"
           "/etc/group"
-
-          # SDL / Steam Input use the udev database to identify controllers
           "/run/udev"
         ];
 
@@ -70,10 +78,7 @@ utils.mkSandboxed {
           "/dev/dri"
           "/dev/input"
           "/dev/snd"
-          # Steam Input's virtual controllers; uncomment if remapping fails
           # "/dev/uinput"
-          # Some controllers (DualSense, Switch Pro) need hidraw; if they
-          # aren't detected, the blunt fix is `bind.dev = [ "/dev" ]`
         ];
       };
 
@@ -82,11 +87,10 @@ utils.mkSandboxed {
         policies = {
           "org.freedesktop.DBus" = "talk";
           "org.freedesktop.Notifications" = "talk";
-          "org.freedesktop.ScreenSaver" = "talk";      # idle inhibit while gaming
-          "org.kde.StatusNotifierWatcher" = "talk";    # tray icon
+          "org.freedesktop.ScreenSaver" = "talk";
+          "org.kde.StatusNotifierWatcher" = "talk";
           "com.feralinteractive.GameMode" = "talk";
 
-          # Steam registers itself and pressure-vessel on the session bus
           "com.valvesoftware.Steam" = "own";
           "com.valvesoftware.Steam.*" = "own";
           "com.steampowered.PressureVessel.*" = "own";
