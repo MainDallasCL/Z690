@@ -48,7 +48,7 @@
     settings = {
       dns = {
         upstreams = [
-          "8.8.8.8"
+          "192.168.2.1"
           "8.8.4.4"
         ];
         listeningMode = "ALL"; # answer on all interfaces
