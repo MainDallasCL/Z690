@@ -4,6 +4,7 @@ My current objectives are to:
 - Sandbox Steam
 - Get a nice Niri config implemented
 
+Computers that use this repo:
 - Z690 - A Desktop PC with hybrid graphics, Intel iGPU + Nvidia RTX 3060 Ti, and i5-12600K CPU
 - CY13 - A Chromebook, Thinkpad C13 Yoga.
 - QPlus - Sunvell QPlus Android TV Box (hardware-wise identical to Tanix TX6 and Inovato Quadra, but has funky LED's I don't know how to control)
