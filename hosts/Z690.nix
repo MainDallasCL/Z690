@@ -36,7 +36,7 @@ in {
     "nixflix.nix"
     "flatpak.nix"
     "freenet.nix"
-    #"steam.nix"
+    "steam.nix"
 
     # Virtual Machines
     "virt-manager.nix"

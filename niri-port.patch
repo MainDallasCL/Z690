@@ -1,0 +1,383 @@
+diff --git a/home-manager/hosts/Z690.nix b/home-manager/hosts/Z690.nix
+index 4f8bbfa..b5b08ed 100644
+--- a/home-manager/hosts/Z690.nix
++++ b/home-manager/hosts/Z690.nix
+@@ -10,6 +10,7 @@
+   # You can import other home-manager modules here
+   imports = [
+     ../vscode.nix
++    ../niri-config.nix
+   ];
+   programs.fish.enable = true;
+ 
+diff --git a/home-manager/niri-config.nix b/home-manager/niri-config.nix
+index 465cf79..c9081ea 100644
+--- a/home-manager/niri-config.nix
++++ b/home-manager/niri-config.nix
+@@ -1,32 +1,25 @@
++# Niri config adapted from https://github.com/ryan4yin/nix-config (MIT).
++#
++# Uses niri-flake's `programs.niri.config` with the raw KDL files in ./niri/.
++# The flake validates the result at build time. This replaces the previous
++# `programs.niri.settings` attrset: set only one of the two, never both.
++{ lib, pkgs, ... }:
++let
++  kdlFiles = [
++    ./niri/config.kdl
++    ./niri/keybindings.kdl
++    ./niri/windowrules.kdl
++    ./niri/outputs.kdl
++  ];
++in
+ {
+-  pkgs,
+-  ...
+-}: {
+-  programs = {
+-    alacritty.enable = true;
+-  };
+-  programs.niri = {
+-    #enable = true;
+-    settings = {
+-      prefer-no-csd = true;
+-      input = {
+-        touchpad = {
+-          tap = true;
+-          natural-scroll = true;
+-        };
+-        # trackpoint = { ... };
+-        focus-follows-mouse = {
+-          enable = true;
+-          max-scroll-amount = "0%";
+-        };
+-      };
+-      layout = {
+-        gaps = 8;
+-      };
+-      binds = {
+-        "Mod+T".action.spawn = "alacritty";
+-        "Mod+D".action.spawn = "fuzzel";
+-      };
+-    };
+-  };
++  programs.alacritty.enable = true;
++
++  programs.niri.config = lib.concatMapStringsSep "\n" builtins.readFile kdlFiles;
++
++  home.packages = with pkgs; [
++    fuzzel      # launcher (Mod+D / Mod+Space)
++    swaylock    # screen lock (Ctrl+Alt+L); PAM service is in modules/niri.nix
++    playerctl   # media keys
++  ];
+ }
+diff --git a/home-manager/niri/config.kdl b/home-manager/niri/config.kdl
+new file mode 100644
+index 0000000..dfd3c9d
+--- /dev/null
++++ b/home-manager/niri/config.kdl
+@@ -0,0 +1,76 @@
++// Adapted from ryan4yin/nix-config (MIT). Concatenated with the other .kdl
++// files in this directory by home-manager/niri-config.nix, so no `include`
++// is used (niri-stable v25.08, as locked in flake.lock, predates `include`).
++// Wiki: https://yalter.github.io/niri/Configuration:-Introduction
++
++input {
++    keyboard {
++        xkb {
++            // layout "us"
++        }
++        // numlock
++    }
++
++    touchpad {
++        tap
++        dwt
++        natural-scroll
++    }
++
++    mouse {
++    }
++
++    // Carried over from your previous settings.
++    focus-follows-mouse max-scroll-amount="0%"
++}
++
++layout {
++    gaps 8
++    center-focused-column "never"
++
++    preset-column-widths {
++        proportion 0.333333
++        proportion 0.500000
++        proportion 0.666667
++    }
++    default-column-width { proportion 0.500000; }
++
++    focus-ring {
++        width 4
++        active-color "#7fc8ff"
++        inactive-color "#505050"
++    }
++
++    border {
++        off
++        width 4
++        active-color "#ffc87f"
++        inactive-color "#505050"
++        urgent-color "#9b0000"
++    }
++
++    struts {
++    }
++}
++
++hotkey-overlay {
++    skip-at-startup
++}
++
++// Carried over from your previous settings.
++prefer-no-csd
++
++screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
++
++animations {
++}
++
++// Named workspaces, used by keybindings.kdl and windowrules.kdl.
++// They are created in this order on your first monitor. To pin one to a
++// specific monitor, see the examples in outputs.kdl.
++workspace "1terminal"
++workspace "2browser"
++workspace "3chat"
++workspace "4entertainment"
++workspace "5utility"
++workspace "0other"
+diff --git a/home-manager/niri/keybindings.kdl b/home-manager/niri/keybindings.kdl
+new file mode 100644
+index 0000000..2b5ad49
+--- /dev/null
++++ b/home-manager/niri/keybindings.kdl
+@@ -0,0 +1,129 @@
++// Adapted from ryan4yin/nix-config. Noctalia-specific binds were replaced with
++// fuzzel / wpctl / playerctl / swaylock / niri's built-in screenshot actions.
++binds {
++    Mod+Shift+Slash { show-hotkey-overlay; }
++
++    // Programs
++    Mod+Return { spawn "alacritty"; }
++    Mod+T      { spawn "alacritty"; }
++    Mod+D      { spawn "fuzzel"; }
++    Mod+Space  { spawn "fuzzel"; }
++    Ctrl+Alt+L { spawn "swaylock"; }
++
++    // Audio (PipeWire / WirePlumber)
++    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+ --limit 1.0"; }
++    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
++    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
++    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
++
++    // Media keys (any MPRIS player)
++    XF86AudioPlay allow-when-locked=true { spawn-sh "playerctl play-pause"; }
++    XF86AudioStop allow-when-locked=true { spawn-sh "playerctl stop"; }
++    XF86AudioPrev allow-when-locked=true { spawn-sh "playerctl previous"; }
++    XF86AudioNext allow-when-locked=true { spawn-sh "playerctl next"; }
++
++    // Overview
++    Mod+O repeat=false { toggle-overview; }
++
++    // Focus / move
++    Mod+Left  { focus-column-left; }
++    Mod+Down  { focus-window-down; }
++    Mod+Up    { focus-window-up; }
++    Mod+Right { focus-column-right; }
++    Mod+H { focus-column-left; }
++    Mod+J { focus-window-down; }
++    Mod+K { focus-window-up; }
++    Mod+L { focus-column-right; }
++    Mod+Ctrl+Left  { move-column-left; }
++    Mod+Ctrl+Down  { move-window-down; }
++    Mod+Ctrl+Up    { move-window-up; }
++    Mod+Ctrl+Right { move-column-right; }
++    Mod+Ctrl+H { move-column-left; }
++    Mod+Ctrl+J { move-window-down; }
++    Mod+Ctrl+K { move-window-up; }
++    Mod+Ctrl+L { move-column-right; }
++
++    Mod+Home { focus-column-first; }
++    Mod+End  { focus-column-last; }
++    Mod+Ctrl+Home { move-column-to-first; }
++    Mod+Ctrl+End  { move-column-to-last; }
++
++    // Monitors
++    Mod+Shift+Left  { focus-monitor-left; }
++    Mod+Shift+Down  { focus-monitor-down; }
++    Mod+Shift+Up    { focus-monitor-up; }
++    Mod+Shift+Right { focus-monitor-right; }
++    Mod+Shift+H { focus-monitor-left; }
++    Mod+Shift+J { focus-monitor-down; }
++    Mod+Shift+K { focus-monitor-up; }
++    Mod+Shift+L { focus-monitor-right; }
++    Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
++    Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
++    Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
++    Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
++    Mod+Shift+Ctrl+H { move-column-to-monitor-left; }
++    Mod+Shift+Ctrl+J { move-column-to-monitor-down; }
++    Mod+Shift+Ctrl+K { move-column-to-monitor-up; }
++    Mod+Shift+Ctrl+L { move-column-to-monitor-right; }
++
++    // Workspaces
++    Mod+Page_Down { focus-workspace-down; }
++    Mod+Page_Up   { focus-workspace-up; }
++    Mod+U { focus-workspace-down; }
++    Mod+I { focus-workspace-up; }
++    Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
++    Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
++    Mod+Ctrl+U { move-column-to-workspace-down; }
++    Mod+Ctrl+I { move-column-to-workspace-up; }
++    Mod+Shift+Page_Down { move-workspace-down; }
++    Mod+Shift+Page_Up   { move-workspace-up; }
++    Mod+Shift+U { move-workspace-down; }
++    Mod+Shift+I { move-workspace-up; }
++
++    Mod+1 { focus-workspace "1terminal"; }
++    Mod+2 { focus-workspace "2browser"; }
++    Mod+3 { focus-workspace "3chat"; }
++    Mod+4 { focus-workspace "4entertainment"; }
++    Mod+5 { focus-workspace "5utility"; }
++    Mod+0 { focus-workspace "0other"; }
++    Mod+Ctrl+1 { move-column-to-workspace "1terminal"; }
++    Mod+Ctrl+2 { move-column-to-workspace "2browser"; }
++    Mod+Ctrl+3 { move-column-to-workspace "3chat"; }
++    Mod+Ctrl+4 { move-column-to-workspace "4entertainment"; }
++    Mod+Ctrl+5 { move-column-to-workspace "5utility"; }
++    Mod+Ctrl+0 { move-column-to-workspace "0other"; }
++
++    // Columns / windows
++    Mod+BracketLeft  { consume-or-expel-window-left; }
++    Mod+BracketRight { consume-or-expel-window-right; }
++    Mod+Comma  { consume-window-into-column; }
++    Mod+Period { expel-window-from-column; }
++
++    Mod+R       { switch-preset-column-width; }
++    Mod+Shift+R { switch-preset-window-height; }
++    Mod+Ctrl+R  { reset-window-height; }
++    Mod+F       { maximize-column; }
++    Mod+Shift+F { fullscreen-window; }
++    Mod+Ctrl+F  { expand-column-to-available-width; }
++    Mod+Ctrl+C  { center-visible-columns; }
++
++    Mod+Minus       { set-column-width "-10%"; }
++    Mod+Equal       { set-column-width "+10%"; }
++    Mod+Shift+Minus { set-window-height "-10%"; }
++    Mod+Shift+Equal { set-window-height "+10%"; }
++
++    Mod+V { toggle-window-floating; }
++    Mod+W { toggle-column-tabbed-display; }
++
++    // Screenshots (niri built-in)
++    Print      { screenshot; }
++    Ctrl+Print { screenshot-screen; }
++    Alt+Print  { screenshot-window; }
++
++    // Escape hatch for remote-desktop / VM clients that grab shortcuts
++    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
++
++    Mod+Q repeat=false { close-window; }
++    Ctrl+Alt+Delete { quit; }
++    Mod+Shift+P { power-off-monitors; }
++}
+diff --git a/home-manager/niri/outputs.kdl b/home-manager/niri/outputs.kdl
+new file mode 100644
+index 0000000..f6c2a82
+--- /dev/null
++++ b/home-manager/niri/outputs.kdl
+@@ -0,0 +1,24 @@
++// Monitor setup. Run `niri msg outputs` inside a niri session to get the
++// exact names / "make model serial" strings, then uncomment and edit.
++// Niri auto-configures outputs if you leave this empty.
++
++// Z690 has an Intel iGPU + RTX 3060 Ti. To render on the iGPU while the
++// monitors stay on the NVIDIA card (as the original author does), find the
++// right path with `ls -l /dev/dri/by-path/` and uncomment:
++//
++// debug {
++//     render-drm-device "/dev/dri/by-path/pci-0000:00:02.0-render"
++// }
++
++// output "DP-1" {
++//     scale 1.0
++//     mode "2560x1440@165"
++//     position x=0 y=0
++// }
++// output "HDMI-A-1" {
++//     scale 1.0
++//     position x=2560 y=0
++// }
++
++// Pin workspaces to a monitor:
++// workspace "3chat" { open-on-output "HDMI-A-1"; }
+diff --git a/home-manager/niri/windowrules.kdl b/home-manager/niri/windowrules.kdl
+new file mode 100644
+index 0000000..e2caa18
+--- /dev/null
++++ b/home-manager/niri/windowrules.kdl
+@@ -0,0 +1,58 @@
++// Window rules: https://yalter.github.io/niri/Configuration:-Window-Rules
++// Trimmed to apps from this repo. Find an app-id with `niri msg windows`.
++
++// Rounded corners
++window-rule {
++    geometry-corner-radius 12
++    clip-to-geometry true
++}
++
++// Draw the focus ring as an outline, never as a solid block behind the window
++// (it would show through semitransparent windows such as terminals).
++window-rule {
++    draw-border-with-background false
++}
++
++// Terminal
++window-rule {
++    match app-id="Alacritty"
++    open-on-workspace "1terminal"
++    open-maximized true
++}
++
++// Browser
++window-rule {
++    match app-id="firefox"
++    open-on-workspace "2browser"
++    open-maximized true
++}
++
++// Chat
++window-rule {
++    match app-id="discord"
++    open-on-workspace "3chat"
++}
++
++// Entertainment
++window-rule {
++    match app-id="steam"
++    open-on-workspace "4entertainment"
++}
++window-rule {
++    match app-id="steam_app_default"
++    open-on-workspace "4entertainment"
++}
++window-rule {
++    match app-id="^vlc$"
++    open-on-workspace "4entertainment"
++}
++window-rule {
++    match app-id="^mpv$"
++    open-on-workspace "4entertainment"
++}
++
++// Utility
++window-rule {
++    match app-id="^org.qbittorrent.qBittorrent$"
++    open-on-workspace "5utility"
++}

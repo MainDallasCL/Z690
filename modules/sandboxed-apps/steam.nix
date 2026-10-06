@@ -19,7 +19,7 @@ utils.mkSandboxed {
   displayName = "Steam";
   wmClass = "steam";
 
-  extraPackages = [ sandboxedXdgUtils nvidia-offload ];
+  extraPackages = [ sandboxedXdgUtils nvidia-offload pkgs.cacert];
 
   presets = [
     "wayland"
@@ -46,6 +46,7 @@ utils.mkSandboxed {
         # __NV_PRIME_RENDER_OFFLOAD_PROVIDER = "NVIDIA-G0";
         # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
         # __VK_LAYER_NV_optimus = "NVIDIA_only";
+        SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
       };
 
       bubblewrap = {
@@ -72,13 +73,22 @@ utils.mkSandboxed {
           "/etc/passwd"
           "/etc/group"
           "/run/udev"
+          "/etc/ssl"
+          "/etc/static"
+          "/run/opengl-driver"
+          "/run/opengl-driver-32"
+          "/sys"
         ];
 
         bind.dev = [
           "/dev/dri"
           "/dev/input"
           "/dev/snd"
-          # "/dev/uinput"
+          "/dev/nvidia0"
+          "/dev/nvidiactl"
+          "/dev/nvidia-modeset"
+          "/dev/nvidia-uvm"
+          "/dev/nvidia-uvm-tools"
         ];
       };
 

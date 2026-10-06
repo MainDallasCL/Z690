@@ -8,13 +8,13 @@ let
 
   minecraft = call ./minecraft.nix;
   vintageStory = call ./vintageStory.nix;
-  steam = call ./steam.nix;
+  steamboxed = call ./steam.nix;
 in
 {
 
   users.users.${username}.packages = [
     #minecraft
     vintageStory
-    steam
+    #steamboxed
   ];
 }
