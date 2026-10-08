@@ -1,0 +1,76 @@
+// Adapted from ryan4yin/nix-config (MIT). Concatenated with the other .kdl
+// files in this directory by home-manager/niri-config.nix, so no `include`
+// is used (niri-stable v25.08, as locked in flake.lock, predates `include`).
+// Wiki: https://yalter.github.io/niri/Configuration:-Introduction
+
+input {
+    keyboard {
+        xkb {
+            // layout "us"
+        }
+        // numlock
+    }
+
+    touchpad {
+        tap
+        dwt
+        natural-scroll
+    }
+
+    mouse {
+    }
+
+    // Carried over from your previous settings.
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+layout {
+    gaps 8
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.333333
+        proportion 0.500000
+        proportion 0.666667
+    }
+    default-column-width { proportion 0.500000; }
+
+    focus-ring {
+        width 4
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+    }
+
+    border {
+        off
+        width 4
+        active-color "#ffc87f"
+        inactive-color "#505050"
+        urgent-color "#9b0000"
+    }
+
+    struts {
+    }
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+// Carried over from your previous settings.
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+animations {
+}
+
+// Named workspaces, used by keybindings.kdl and windowrules.kdl.
+// They are created in this order on your first monitor. To pin one to a
+// specific monitor, see the examples in outputs.kdl.
+workspace "1terminal"
+workspace "2browser"
+workspace "3chat"
+workspace "4entertainment"
+workspace "5utility"
+workspace "0other"

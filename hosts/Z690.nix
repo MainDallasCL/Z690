@@ -32,6 +32,8 @@ in {
     # User space
     "users.nix"
     "plasma.nix"
+#    "niri.nix"
+    "nixarchy.nix"
     "applications.nix"
     "nixflix.nix"
     "flatpak.nix"

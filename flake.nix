@@ -43,6 +43,28 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Noctalia desktop shell (bar, launcher, lock screen, notifications...).
+    # Provides `homeModules.default` -> `programs.noctalia`.
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Catppuccin theme ports for home-manager.
+    catppuccin = {
+      url = "github:catppuccin/nix/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # ryan4yin's wallpapers (plain files, not a flake).
+    wallpapers = {
+      url = "github:ryan4yin/wallpapers";
+      flake = false;
+    };
+
+    # Gonna try omarchy-like config too
+    nixarchy.url = "github:olafkfreund/nixarchy/v4.0.1-1";
   };
 
   outputs = {

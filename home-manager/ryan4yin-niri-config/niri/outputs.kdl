@@ -1,0 +1,27 @@
+// Monitor setup. Run `niri msg outputs` inside a niri session to get the
+// exact names / "make model serial" strings, then uncomment and edit.
+// Niri auto-configures outputs if you leave this empty.
+
+// Allows notification actions and window activation from Noctalia.
+// Keep every `debug` option in this one block.
+debug {
+    honor-xdg-activation-with-invalid-serial
+
+    // Z690 has an Intel iGPU + RTX 3060 Ti. To render on the iGPU while the
+    // monitors stay on the NVIDIA card, find the path with
+    // `ls -l /dev/dri/by-path/` and uncomment:
+    // render-drm-device "/dev/dri/by-path/pci-0000:00:02.0-render"
+}
+
+// output "DP-1" {
+//     scale 1.0
+//     mode "2560x1440@165"
+//     position x=0 y=0
+// }
+// output "HDMI-A-1" {
+//     scale 1.0
+//     position x=2560 y=0
+// }
+
+// Pin workspaces to a monitor:
+// workspace "3chat" { open-on-output "HDMI-A-1"; }

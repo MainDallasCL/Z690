@@ -1,0 +1,134 @@
+// Adapted from ryan4yin/nix-config (MIT). Launcher, lock, audio, media and
+// screenshots go through Noctalia (`noctalia msg ...`).
+binds {
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    // Programs
+    Mod+Return { spawn "alacritty"; }
+    Mod+T      { spawn "alacritty"; }
+    Mod+D      { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    Mod+Space  { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    XF86Search { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    Ctrl+Alt+L { spawn "noctalia" "msg" "session" "lock"; }
+
+    // Noctalia panels
+    Mod+Shift+V { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
+    Mod+C       { spawn "noctalia" "msg" "panel-toggle" "launcher" "/calc"; }
+    Mod+S       { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
+    Mod+E       { spawn "noctalia" "msg" "panel-toggle" "session"; }
+
+    // Audio + media (Noctalia shows the OSD)
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia" "msg" "volume-up"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia" "msg" "volume-down"; }
+    XF86AudioMute        allow-when-locked=true { spawn "noctalia" "msg" "volume-mute"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn "noctalia" "msg" "mic-mute"; }
+    XF86AudioPlay allow-when-locked=true { spawn "noctalia" "msg" "media" "toggle"; }
+    XF86AudioStop allow-when-locked=true { spawn "noctalia" "msg" "media" "pause"; }
+    XF86AudioPrev allow-when-locked=true { spawn "noctalia" "msg" "media" "previous"; }
+    XF86AudioNext allow-when-locked=true { spawn "noctalia" "msg" "media" "next"; }
+
+    // Overview
+    Mod+O repeat=false { toggle-overview; }
+
+    // Focus / move
+    Mod+Left  { focus-column-left; }
+    Mod+Down  { focus-window-down; }
+    Mod+Up    { focus-window-up; }
+    Mod+Right { focus-column-right; }
+    Mod+H { focus-column-left; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+    Mod+L { focus-column-right; }
+    Mod+Ctrl+Left  { move-column-left; }
+    Mod+Ctrl+Down  { move-window-down; }
+    Mod+Ctrl+Up    { move-window-up; }
+    Mod+Ctrl+Right { move-column-right; }
+    Mod+Ctrl+H { move-column-left; }
+    Mod+Ctrl+J { move-window-down; }
+    Mod+Ctrl+K { move-window-up; }
+    Mod+Ctrl+L { move-column-right; }
+
+    Mod+Home { focus-column-first; }
+    Mod+End  { focus-column-last; }
+    Mod+Ctrl+Home { move-column-to-first; }
+    Mod+Ctrl+End  { move-column-to-last; }
+
+    // Monitors
+    Mod+Shift+Left  { focus-monitor-left; }
+    Mod+Shift+Down  { focus-monitor-down; }
+    Mod+Shift+Up    { focus-monitor-up; }
+    Mod+Shift+Right { focus-monitor-right; }
+    Mod+Shift+H { focus-monitor-left; }
+    Mod+Shift+J { focus-monitor-down; }
+    Mod+Shift+K { focus-monitor-up; }
+    Mod+Shift+L { focus-monitor-right; }
+    Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
+    Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+    Mod+Shift+Ctrl+H { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+J { move-column-to-monitor-down; }
+    Mod+Shift+Ctrl+K { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+L { move-column-to-monitor-right; }
+
+    // Workspaces
+    Mod+Page_Down { focus-workspace-down; }
+    Mod+Page_Up   { focus-workspace-up; }
+    Mod+U { focus-workspace-down; }
+    Mod+I { focus-workspace-up; }
+    Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
+    Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
+    Mod+Ctrl+U { move-column-to-workspace-down; }
+    Mod+Ctrl+I { move-column-to-workspace-up; }
+    Mod+Shift+Page_Down { move-workspace-down; }
+    Mod+Shift+Page_Up   { move-workspace-up; }
+    Mod+Shift+U { move-workspace-down; }
+    Mod+Shift+I { move-workspace-up; }
+
+    Mod+1 { focus-workspace "1terminal"; }
+    Mod+2 { focus-workspace "2browser"; }
+    Mod+3 { focus-workspace "3chat"; }
+    Mod+4 { focus-workspace "4entertainment"; }
+    Mod+5 { focus-workspace "5utility"; }
+    Mod+0 { focus-workspace "0other"; }
+    Mod+Ctrl+1 { move-column-to-workspace "1terminal"; }
+    Mod+Ctrl+2 { move-column-to-workspace "2browser"; }
+    Mod+Ctrl+3 { move-column-to-workspace "3chat"; }
+    Mod+Ctrl+4 { move-column-to-workspace "4entertainment"; }
+    Mod+Ctrl+5 { move-column-to-workspace "5utility"; }
+    Mod+Ctrl+0 { move-column-to-workspace "0other"; }
+
+    // Columns / windows
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Comma  { consume-window-into-column; }
+    Mod+Period { expel-window-from-column; }
+
+    Mod+R       { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R  { reset-window-height; }
+    Mod+F       { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+Ctrl+F  { expand-column-to-available-width; }
+    Mod+Ctrl+C  { center-visible-columns; }
+
+    Mod+Minus       { set-column-width "-10%"; }
+    Mod+Equal       { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    Mod+V { toggle-window-floating; }
+    Mod+W { toggle-column-tabbed-display; }
+
+    // Screenshots (Noctalia; annotation editor opens after region capture)
+    Print      { spawn "noctalia" "msg" "screenshot-region"; }
+    Ctrl+Print { spawn "noctalia" "msg" "screenshot-fullscreen"; }
+    Alt+Print  { spawn "noctalia" "msg" "screenshot-fullscreen" "pick"; }
+
+    // Escape hatch for remote-desktop / VM clients that grab shortcuts
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    Mod+Q repeat=false { close-window; }
+    Ctrl+Alt+Delete { quit; }
+    Mod+Shift+P { power-off-monitors; }
+}

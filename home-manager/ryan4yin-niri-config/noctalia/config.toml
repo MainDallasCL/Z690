@@ -1,0 +1,112 @@
+# Noctalia v5 baseline, adapted from ryan4yin/nix-config (MIT).
+# Settings changed in the Noctalia UI are stored in
+# ~/.local/state/noctalia/settings.toml, which loads after this file and wins.
+
+[accessibility]
+ui_scale = 1.1
+
+[shell]
+font_family = "Maple Mono NF CN"
+setup_wizard_enabled = false
+
+[shell.screenshot]
+annotate = true
+directory = "~/Pictures/Screenshots"
+
+# Session menu: lock is instant, everything else gets a 10 s confirm countdown.
+[[shell.session.actions]]
+action = "lock"
+shortcut = "1"
+
+[[shell.session.actions]]
+action = "logout"
+shortcut = "2"
+countdown_seconds = 10
+
+[[shell.session.actions]]
+action = "lock_and_suspend"
+shortcut = "3"
+countdown_seconds = 10
+
+[[shell.session.actions]]
+action = "reboot"
+shortcut = "4"
+countdown_seconds = 10
+
+[[shell.session.actions]]
+action = "shutdown"
+shortcut = "5"
+variant = "destructive"
+countdown_seconds = 10
+
+[osd]
+position = "bottom_right"
+
+[notification]
+position = "bottom_right"
+
+# Catppuccin built into Noctalia; the catppuccin/nix ports in theme.nix cover
+# apps, so Noctalia's own app templates stay off.
+[theme]
+source = "builtin"
+builtin = "Catppuccin"
+mode = "dark"
+
+[theme.templates]
+enable_builtin_templates = false
+enable_community_templates = false
+
+[wallpaper]
+directory = "/home/dallas/Pictures/Wallpapers/ryan4yin"
+
+[wallpaper.automation]
+enabled = true
+interval_seconds = 600
+
+[wallpaper.default]
+path = "/home/dallas/Pictures/Wallpapers/ryan4yin/rolling-girls_lalala.png"
+
+# Set these if you want weather and sunrise/sunset theme switching:
+# [location]
+# address = "your city"
+# [weather]
+# enabled = true
+
+[bar.main]
+background_opacity = 0.61
+font_scale = 1.1
+margin_ends = 20
+start = [ "launcher", "wallpaper", "workspaces", "cpu", "ram", "disk", "net_rx", "net_tx" ]
+
+[widget.clock]
+type = "clock"
+format = "{:%Y-%m-%d %A %H:%M}"
+
+[widget.media]
+hide_when_no_media = true
+
+[widget.cpu]
+type = "sysmon"
+stat = "cpu_usage"
+
+[widget.ram]
+type = "sysmon"
+stat = "ram_pct"
+
+[widget.disk]
+type = "sysmon"
+stat = "disk_used_pct"
+path = "/"
+
+[widget.net_rx]
+type = "sysmon"
+stat = "net_rx"
+network_speed_compact = true
+
+[widget.net_tx]
+type = "sysmon"
+stat = "net_tx"
+network_speed_compact = true
+
+[widget.network]
+show_label = false

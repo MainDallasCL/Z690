@@ -1,0 +1,25 @@
+// Noctalia integration. https://docs.noctalia.dev/noctalia/compositor-settings/niri/
+
+spawn-at-startup "noctalia"
+
+// Rounded corners, clipping window contents to them.
+window-rule {
+    geometry-corner-radius 20
+    clip-to-geometry true
+}
+
+// Show the Noctalia wallpaper on the overview backdrop.
+layer-rule {
+    match namespace="^noctalia-backdrop"
+    place-within-backdrop true
+}
+
+// Applied only inside niri sessions, so Plasma sessions are left untouched.
+environment {
+    // Qt apps follow Noctalia's light/dark mode through the XDG portal.
+    QT_QPA_PLATFORMTHEME "xdgdesktopportal"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    _JAVA_AWT_WM_NONREPARENTING "1"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    MOZ_ENABLE_WAYLAND "1"
+}

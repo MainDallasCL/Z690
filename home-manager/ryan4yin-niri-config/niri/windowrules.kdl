@@ -1,0 +1,54 @@
+// Window rules: https://yalter.github.io/niri/Configuration:-Window-Rules
+// Trimmed to apps from this repo. Find an app-id with `niri msg windows`.
+
+// Rounded corners are set in noctalia.kdl.
+
+// Draw the focus ring as an outline, never as a solid block behind the window
+// (it would show through semitransparent windows such as terminals).
+window-rule {
+    draw-border-with-background false
+}
+
+// Terminal
+window-rule {
+    match app-id="Alacritty"
+    open-on-workspace "1terminal"
+    open-maximized true
+}
+
+// Browser
+window-rule {
+    match app-id="firefox"
+    open-on-workspace "2browser"
+    open-maximized true
+}
+
+// Chat
+window-rule {
+    match app-id="discord"
+    open-on-workspace "3chat"
+}
+
+// Entertainment
+window-rule {
+    match app-id="steam"
+    open-on-workspace "4entertainment"
+}
+window-rule {
+    match app-id="steam_app_default"
+    open-on-workspace "4entertainment"
+}
+window-rule {
+    match app-id="^vlc$"
+    open-on-workspace "4entertainment"
+}
+window-rule {
+    match app-id="^mpv$"
+    open-on-workspace "4entertainment"
+}
+
+// Utility
+window-rule {
+    match app-id="^org.qbittorrent.qBittorrent$"
+    open-on-workspace "5utility"
+}
