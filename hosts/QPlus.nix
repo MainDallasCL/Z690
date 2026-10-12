@@ -24,7 +24,7 @@ in {
 
     # User space
     "users.nix"
-    "xfce4.nix"
+#    "xfce4.nix" It's laggy as all heck
   ];
 
   services.openssh = {

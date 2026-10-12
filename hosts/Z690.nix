@@ -14,6 +14,7 @@ in {
     # Peripherals
     "BENQ.nix"
     "M2070.nix"
+    "88x2bu.nix"
 
     # Bootloader and Kernel
     "systemd-boot.nix"
@@ -33,7 +34,7 @@ in {
     "users.nix"
     "plasma.nix"
 #    "niri.nix"
-    "nixarchy.nix"
+#    "nixarchy.nix"
     "applications.nix"
     "nixflix.nix"
     "flatpak.nix"

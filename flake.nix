@@ -93,14 +93,7 @@
           { networking.hostName = "Z690"; }
 
           # Since my machine is a desktop, Next line has been prohibited by the State of Vatican
-          #nixos-hardware.nixosModules.asus-zephyrus-gu603h
-
-          # Instead, I employed claude to fetch me all this shit
-          nixos-hardware.nixosModules.common-cpu-intel-alder-lake
-          nixos-hardware.nixosModules.common-gpu-nvidia-ampere
-          nixos-hardware.nixosModules.common-gpu-nvidia-prime
-          nixos-hardware.nixosModules.common-pc
-          nixos-hardware.nixosModules.common-pc-ssd
+          nixos-hardware.nixosModules.asus-zephyrus-gu603h
 
           nixflix.nixosModules.default
           nix-flatpak.nixosModules.nix-flatpak
