@@ -1,5 +1,5 @@
 {
-  inputs, lib, config, pkgs, ...
+  lib, pkgs, ...
 }:{
   # Custom Kernel
   nix.settings.substituters = [ "https://cache.xinux.uz" ];

@@ -14,7 +14,7 @@ in {
     # Peripherals
     "BENQ.nix"
     "M2070.nix"
-    "88x2bu.nix"
+#    "88x2bu.nix"
 
     # Bootloader and Kernel
     "systemd-boot.nix"
@@ -44,6 +44,7 @@ in {
     # Virtual Machines
     "virt-manager.nix"
     "looking-glass.nix"
+    "nvidia-rebind.nix"
 
     # Sandboxed applications
     "sandboxed-apps"

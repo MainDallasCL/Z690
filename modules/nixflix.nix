@@ -1,5 +1,5 @@
 {
-  inputs, lib, config, pkgs, nixflix, ...
+  ...
 }: {
   nixflix = {
     enable = true;
