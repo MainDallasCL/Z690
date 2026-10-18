@@ -44,11 +44,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791672482,
-        "narHash": "sha256-ylziBSu4bmVGfrc7zZ+o9Qut3KD0Rei+9G4sx/oAnbM=",
+        "lastModified": 1792238796,
+        "narHash": "sha256-mRsa8oJ8R7fkvR5K+uQYfuxX9Np0ai/KvzTE8FYVx7E=",
         "owner": "catppuccin",
         "repo": "nix",
-        "rev": "ad8b2c6592638fb7b3d05597eafc9c6386ffe7e1",
+        "rev": "30c87b95a628e81ec82a4fa0ed4db85d7c7d46d6",
         "type": "github"
       },
       "original": {
@@ -161,11 +161,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790996401,
-        "narHash": "sha256-f+kOxEmOUnQazVAmGg0i8hzwgd1kX/geY+k/Dpheye8=",
+        "lastModified": 1792274446,
+        "narHash": "sha256-AM1HmBeDnB2B3dSiXuCYeu7Me+lHNpz/P39lVxGJBuQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "db7d5e2332710f5abb088f6b5de927d7f9511b35",
+        "rev": "ab3823b4b24c0c3ca984c1f3ee577fd6d667424c",
         "type": "github"
       },
       "original": {
@@ -715,11 +715,11 @@
         "vpn-confinement": "vpn-confinement"
       },
       "locked": {
-        "lastModified": 1791566324,
-        "narHash": "sha256-Z/To88KmmTIDcX7KxfaeHkw7qOToD8JPC7kFYs5mido=",
+        "lastModified": 1792295367,
+        "narHash": "sha256-2p4TqSbKGVzcWRwQs2Ra4rm6R3pIXG49PxJjJepxEkY=",
         "owner": "kiriwalawren",
         "repo": "nixflix",
-        "rev": "39e75c77fb10dc00937ae2ecf71b6773e1455b88",
+        "rev": "f7060b98b993922f1a0709f15a26d7a707c19ea5",
         "type": "github"
       },
       "original": {
@@ -735,11 +735,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791373788,
-        "narHash": "sha256-c3oMt0QoE+4yiRk6u1m2L9ogjaUw0uTGn9yk808KkgE=",
+        "lastModified": 1791721963,
+        "narHash": "sha256-BYhx89XJltnRyQeuDKHVL5eSqbbfAcOKuDts7QRsrxQ=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "4bc63156b109ee7b4103e3ec30565c8c92bde435",
+        "rev": "60a624466c08787ee8303393b7d4752d1826f14f",
         "type": "github"
       },
       "original": {
@@ -757,11 +757,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791426201,
-        "narHash": "sha256-m7eWQTRuwNQeAXxliSO1lxuQje/1l58tzCFJwaDlUAc=",
+        "lastModified": 1792000783,
+        "narHash": "sha256-IGqIP3H1wqT3x7Rvw1tdS/mR3jfdm1EGrIIRxNMXcCY=",
         "owner": "nixpak",
         "repo": "nixpak",
-        "rev": "dd037bd073edc9f8ce2186c6c1975f47db245bed",
+        "rev": "b5811f96aead6c01388095a2b0839559c72c73fe",
         "type": "github"
       },
       "original": {
@@ -851,11 +851,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1791426274,
-        "narHash": "sha256-MWhktfFtFE8Jl7bf9Pkp7TR5MSdYCjCswSo0Gkb4ywc=",
+        "lastModified": 1792030654,
+        "narHash": "sha256-OaQwAtPMTjQiY2sT/2/62UbSPhzP/0aDnWzMm/NCiUw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "7c8764b7c7b09b34f632464276218ef9090eaa11",
+        "rev": "26f4107e47e3ad0ffd0db220469ba83b6f6d96e8",
         "type": "github"
       },
       "original": {
@@ -872,11 +872,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791691567,
-        "narHash": "sha256-gyIWW3/IEayQ4QnVCkYcGVzd8RyvgYywGoFDbA78XYk=",
+        "lastModified": 1792314209,
+        "narHash": "sha256-+9RYq8m94AI/xU9gtUwv0GHjo9tgBiDOjYIbAX3Hcns=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "4a79d1b2b67b3373bb66dc3dd6854120680d18e3",
+        "rev": "e37d7145b95a51b801db9bb20d1c600f35111e0b",
         "type": "github"
       },
       "original": {
@@ -980,11 +980,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786901030,
-        "narHash": "sha256-WSFCsDSE5ffgD2MqzkM2CYjeFiKhRF/dJUN8uedb6YE=",
+        "lastModified": 1791490544,
+        "narHash": "sha256-qScE7Wz6Zg7eg8ItUpnkmKgst8weWschGe0E8jM4rj4=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "27b3b12a8e6375f28ebe122f07d230ca5459bbfa",
+        "rev": "4cfe8d7065cc8ca91c0a50361b6dd74920eeb1f5",
         "type": "github"
       },
       "original": {
@@ -1000,11 +1000,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789664408,
-        "narHash": "sha256-+NUBhdtSgPn/G/saQde+Cgo9F8TSdh+UKn+AdfJS8HE=",
+        "lastModified": 1792146607,
+        "narHash": "sha256-3KEB/yZKGkqBU7BtzrTq7kMWzp16NHI0bItZZdDbAMI=",
         "ref": "refs/heads/master",
-        "rev": "846ba0daea535db65a76d6f045c1023209972763",
-        "revCount": 163,
+        "rev": "5353839b03bd8aaa18d0fc1e3e04c7f8dd5bf1f0",
+        "revCount": 164,
         "type": "git",
         "url": "https://codeberg.org/PierreBorine/vintagestory-nix"
       },
@@ -1015,11 +1015,11 @@
     },
     "vpn-confinement": {
       "locked": {
-        "lastModified": 1789394839,
-        "narHash": "sha256-trdjVJKmDBbzgbP8pd+R7iKbGkdRu0nmXgQlBR/hEiU=",
+        "lastModified": 1791310298,
+        "narHash": "sha256-SpqEEuyrkzTqjIHwHrZE+Rs6ez2tzIeYkSY67zp6fcQ=",
         "owner": "Maroka-chan",
         "repo": "VPN-Confinement",
-        "rev": "a21f66ccd9f644c3770ccdf287cb380c00192628",
+        "rev": "cc37bcf5000e237709e725a9cda010a5cbce3111",
         "type": "github"
       },
       "original": {
