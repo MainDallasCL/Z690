@@ -1,5 +1,19 @@
 { pkgs, ... }:
 {
+
+  services.unbound = {
+    enable = true;
+    enableRootTrustAnchor = true; # Włącza DNSSEC out-of-the-box
+    settings = {
+      server = {
+        interface = [ "127.0.0.1" ];
+        port = 5335;
+        access-control = [ "127.0.0.0/8 allow" ];
+        prefetch = "yes";
+      };
+    };
+  };
+
   services.pihole-web = {
     enable = true;
     ports = [
@@ -48,8 +62,7 @@
     settings = {
       dns = {
         upstreams = [
-          "192.168.2.1"
-          "8.8.4.4"
+          "127.0.0.1#53"
         ];
         listeningMode = "ALL"; # answer on all interfaces
         interface = "";
