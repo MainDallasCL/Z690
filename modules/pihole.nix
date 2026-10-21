@@ -62,7 +62,7 @@
     settings = {
       dns = {
         upstreams = [
-          "127.0.0.1#53"
+          "127.0.0.1#5335"
         ];
         listeningMode = "ALL"; # answer on all interfaces
         interface = "";
