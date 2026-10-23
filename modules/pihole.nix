@@ -1,19 +1,44 @@
 { pkgs, ... }:
-{
+let
+  hasIPv6Internet = false;
+  StateDirectory = "dnscrypt-proxy";
+in {
 
-  services.unbound = {
+# Unbound was here
+# It has proven itself successful in the goal of being a failure
+
+    # See https://wiki.nixos.org/wiki/Encrypted_DNS
+  services.dnscrypt-proxy = {
     enable = true;
-    enableRootTrustAnchor = true; # Włącza DNSSEC out-of-the-box
+    # See https://github.com/DNSCrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml
     settings = {
-      server = {
-        interface = [ "127.0.0.1" ];
-        port = 5335;
-        do-ip6 = "no";
-        access-control = [ "127.0.0.0/8 allow" ];
-        prefetch = "yes";
+      listen_addresses = [ "127.0.0.1:51" ];
+      sources.public-resolvers = {
+        urls = [
+          "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
+          "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
+        ];
+        minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3"; # See https://github.com/DNSCrypt/dnscrypt-resolvers/blob/master/v3/public-resolvers.md
+        cache_file = "/var/lib/${StateDirectory}/public-resolvers.md";
       };
+
+      # Use servers reachable over IPv6 -- Do not enable if you don't have IPv6 connectivity
+      ipv6_servers = hasIPv6Internet;
+      block_ipv6 = ! (hasIPv6Internet);
+
+      require_dnssec = true;
+      require_nolog = false;
+      require_nofilter = true;
+
+      # If you want, choose a specific set of servers that come from your sources.
+      # Here it's from https://github.com/DNSCrypt/dnscrypt-resolvers/blob/master/v3/public-resolvers.md
+      # If you don't specify any, dnscrypt-proxy will automatically rank servers
+      # that match your criteria and choose the best one.
+      # server_names = [ ... ];
     };
   };
+
+  systemd.services.dnscrypt-proxy.serviceConfig.StateDirectory = StateDirectory;
 
   services.pihole-web = {
     enable = true;
@@ -63,8 +88,7 @@
     settings = {
       dns = {
         upstreams = [
-#          "127.0.0.1#5335"
-	  "192.168.2.1"
+          "127.0.0.1#51"
         ];
         listeningMode = "ALL"; # answer on all interfaces
         interface = "";
