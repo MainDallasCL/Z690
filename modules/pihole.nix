@@ -8,6 +8,7 @@
       server = {
         interface = [ "127.0.0.1" ];
         port = 5335;
+        do-ip6 = "no";
         access-control = [ "127.0.0.0/8 allow" ];
         prefetch = "yes";
       };
@@ -62,7 +63,8 @@
     settings = {
       dns = {
         upstreams = [
-          "127.0.0.1#5335"
+#          "127.0.0.1#5335"
+	  "192.168.2.1"
         ];
         listeningMode = "ALL"; # answer on all interfaces
         interface = "";
