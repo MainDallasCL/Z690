@@ -21,7 +21,7 @@
   virtualisation.oci-containers.containers."bitmagnet" = {
     image = "ghcr.io/bitmagnet-io/bitmagnet:latest";
     environment = {
-      "POSTGRES_HOST" = "postgres";
+      "POSTGRES_HOST" = "10.90.0.10";
       "POSTGRES_PASSWORD" = "postgres";
     };
     volumes = [
@@ -77,6 +77,7 @@
       "--health-start-period=20s"
       "--network-alias=postgres"
       "--network=bitmagnet_default"
+      "--ip=10.90.0.10"                 # new: fixed address
       "--shm-size=1073741824"
     ];
   };
@@ -109,7 +110,8 @@
       ExecStop = "podman network rm -f bitmagnet_default";
     };
     script = ''
-      podman network inspect bitmagnet_default || podman network create bitmagnet_default
+      podman network inspect bitmagnet_default || \
+        podman network create --disable-dns --subnet 10.90.0.0/24 bitmagnet_default
     '';
     partOf = [ "podman-compose-bitmagnet-root.target" ];
     wantedBy = [ "podman-compose-bitmagnet-root.target" ];
