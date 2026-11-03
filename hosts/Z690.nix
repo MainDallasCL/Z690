@@ -29,7 +29,7 @@ in {
     "networking.nix"
     "ssh.nix"
     "sunshine.nix"
-#    "traffic.nix"
+    "traffic.nix"
 
     # User space
     "users.nix"
