@@ -20,7 +20,7 @@ in {
     "locale.nix"
     "networking.nix"
     "pihole.nix"
-    "docker.nix"
+    "docker/docker.nix"
     #"ssh.nix" Slightly different for now
 
     # User space

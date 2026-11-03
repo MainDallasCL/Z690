@@ -1,4 +1,8 @@
+{...}:
 {
+  imports = [
+    ./bitmagnet.nix
+  ];
   virtualisation.docker = {
     # Consider disabling the system wide Docker daemon
     enable = false;
