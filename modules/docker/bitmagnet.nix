@@ -32,7 +32,11 @@
       "3334:3334/tcp"
       "3334:3334/udp"
     ];
-    cmd = [ "worker" "run" "--keys=http_server" "--keys=queue_server" "--keys=dht_crawler" ];
+
+    # Disable, or enable dht_crawler
+#    cmd = [ "worker" "run" "--keys=http_server" "--keys=queue_server" "--keys=dht_crawler" ];
+    cmd = [ "worker" "run" "--keys=http_server" "--keys=queue_server" ];
+
     dependsOn = [
       "bitmagnet-postgres"
     ];
