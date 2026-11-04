@@ -21,6 +21,7 @@ in {
     "networking.nix"
     "pihole.nix"
     "docker/docker.nix"
+    "transmission-remote.nix"
     #"ssh.nix" Slightly different for now
 
     # User space
