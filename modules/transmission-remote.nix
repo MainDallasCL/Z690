@@ -10,6 +10,8 @@
       rpc-authentication-required = true;
       rpc-username = "dallas";
       rpc-password = "123";
+      download-dir = "/mnt/MEDIA/Torrents";
+      incomplete-dir = "/mnt/MEDIA/Torrents/.incomplete";
     };
   };
 }
