@@ -2,7 +2,7 @@
 # and may be overwritten by future invocations. Please make changes
 # to /etc/nixos/configuration.nix instead.
 
-{ config, lib, pkgs, modulesPath, ... }:
+{ lib, modulesPath, ... }:
 
 {
   imports =
@@ -24,6 +24,17 @@
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
+
+  fileSystems."/mnt/MEDIA" =
+  { device = "/dev/disk/by-label/MEDIA";
+    fsType = "f2fs";
+    options = [
+      "compress_algorithm=zstd:6"
+      "compress_chksum"
+      "atgc,gc_merge"
+      "lazytime"
+    ];
+  };
 
   swapDevices = [ ];
 
