@@ -31,15 +31,4 @@
     fsType = "vfat";
     options = [ "fmask=0077" "dmask=0077" ];
   };
-
-  fileSystems."/mnt/MEDIA" = {
-    device = "/dev/disk/by-label/MEDIA";
-    fsType = "f2fs";
-    options = [
-      "compress_algorithm=zstd:6"
-      "compress_chksum"
-      "atgc,gc_merge"
-      "lazytime"
-    ];
-  };
 }
