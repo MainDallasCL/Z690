@@ -1,5 +1,5 @@
 {
-  inputs, lib, config, pkgs, ...
+  inputs, ...
 }: {
   nixpkgs = {
     overlays = [
@@ -17,4 +17,5 @@
     };
     channel.enable = false;
   };
+
 }

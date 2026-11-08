@@ -1,5 +1,5 @@
 {
-  inputs, lib, config, pkgs, ...
+  pkgs, ...
 }:{
   users.users = {
     dallas = {
@@ -18,6 +18,7 @@
         "audio"
         "i2c"
         "kvm"
+        "media"
       ];
       packages = with pkgs; [
         thunderbird

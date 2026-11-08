@@ -8,7 +8,7 @@
     enable = false;
 
     rootless = {
-      enable = true;
+      enable = false;
       setSocketVariable = true;
       # Optionally customize rootless Docker daemon settings
       daemon.settings = {

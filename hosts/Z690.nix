@@ -39,8 +39,10 @@ in {
     "applications.nix"
     "nixflix.nix"
     "flatpak.nix"
-    "freenet.nix"
+#    "freenet.nix"
     "steam.nix"
+    "QPlus-share.nix"
+    "local-llm.nix"
 
     # Virtual Machines
     "virt-manager.nix"
