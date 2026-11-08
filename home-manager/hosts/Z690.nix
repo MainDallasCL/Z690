@@ -8,7 +8,7 @@
 }: {
   # You can import other home-manager modules here
   imports = [
-    ../vscode.nix
+    #../vscode.nix
     # Looking for a different config...
     #../ryan4yin-niri-config
   ];
