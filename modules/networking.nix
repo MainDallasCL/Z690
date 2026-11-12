@@ -11,7 +11,7 @@
   networking.useDHCP = false;
   networking.dhcpcd.enable = false;
 
-  networking.nameservers = lib.mkDefault [ "192.168.2.175" ];
+  networking.nameservers = lib.mkDefault [ "100.85.80.91" ];
 
   services.tailscale = {
     enable = true;

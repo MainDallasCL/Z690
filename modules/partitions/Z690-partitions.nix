@@ -10,7 +10,10 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  swapDevices = [ ];
+  swapDevices = [{
+    device = "/mnt/EXTRA/swapfile";
+    size = 16*1024; # 16 GiB
+  }];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -74,4 +77,5 @@
   { device = "/dev/disk/by-label/SSDRAID";
     fsType = "ext4";
   };
+
 }
