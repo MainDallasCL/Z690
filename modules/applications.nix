@@ -12,5 +12,6 @@
     wol
     jre17_minimal
     nil
+    chromium
   ];
 }
