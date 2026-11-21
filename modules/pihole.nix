@@ -50,7 +50,7 @@ in {
 
   services.pihole-ftl = {
     enable = true;
-    package = pkgs.pihole-ftl;
+#    package = pkgs.pihole-ftl;
 
     openFirewallDNS = true;
     openFirewallWebserver = true;
